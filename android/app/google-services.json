@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "246875833858",
+    "project_id": "auth-5e550",
+    "storage_bucket": "auth-5e550.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:246875833858:android:c93c92e41176491414091b",
+        "android_client_info": {
+          "package_name": "com.example.photoblogapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "246875833858-6scj0kecm0q4539vfhlhv4grq0lnnrjb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.photoblogapp",
+            "certificate_hash": "e6d5cd18f9ff7e690beadb3fbcf61b11a48d0e29"
+          }
+        },
+        {
+          "client_id": "246875833858-n1plq1npf05tneok8jlpanb31rci990h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDok2oJUs84RDJS49l__7KJKTn1T_ShXn0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "246875833858-n1plq1npf05tneok8jlpanb31rci990h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

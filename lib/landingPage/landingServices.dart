@@ -44,7 +44,9 @@ class LandingServices with ChangeNotifier {
                   }),
                   MaterialButton(child: Text('CONFIRM IMAGE'),onPressed: (
                       ){
-                    Provider.of<FirebaseOperations>(context,listen: false).uploadUserAvatar(context);
+                    Provider.of<FirebaseOperations>(context,listen: false).uploadUserAvatar(context).whenComplete((){
+                      signInSheet(context);
+                    });
                   }),
                 ],
               ),
@@ -67,7 +69,7 @@ class LandingServices with ChangeNotifier {
         height: MediaQuery.of(context).size.height * 0.40,
         width: MediaQuery.of(context).size.width,
         child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('allUsers').snapshots(),
+          stream: FirebaseFirestore.instance.collection('users').snapshots(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(
@@ -130,6 +132,9 @@ class LandingServices with ChangeNotifier {
                   //       suffixIcon: Icon(Icons.clear)),
                   // ),
                   Padding(padding: const EdgeInsets.symmetric(horizontal: 15)),
+                  CircleAvatar(
+
+                  ),
                   TextField(
                     //obscureText: true,
                     controller: userEmailController,
@@ -194,7 +199,9 @@ class LandingServices with ChangeNotifier {
                     ),
                   ),
                   CircleAvatar(
-                    backgroundColor: Colors.red,
+                    backgroundImage: FileImage(
+                      Provider.of<landingUtils>(context,listen: false).getUserAvatar,
+                    ),
                     radius: 80.0,
                   ),
                   Padding(padding: const EdgeInsets.symmetric(horizontal: 15)),
@@ -234,7 +241,15 @@ class LandingServices with ChangeNotifier {
                       onPressed: () {
                         Provider.of<Authentication>(context, listen: false)
                             .logIntoAccount(userEmailController.text,
-                                userPasswordController.text)
+                                userPasswordController.text).whenComplete((){
+                          Provider.of<FirebaseOperations>(context, listen: false).createUserCollection(context, {
+                            'useruid' : Provider.of<Authentication>(context,listen:false).getUserUid,
+                            'username' : userNameController.text,
+                            'useremail' : userEmailController.text,
+                            'userimage' : Provider.of<landingUtils>(context,listen: false).getUserAvatarUrl,
+
+                          });
+                        })
                             .whenComplete(() {
                           Navigator.pushReplacement(
                               context,

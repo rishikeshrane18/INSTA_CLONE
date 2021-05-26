@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:photoblogapp/Homepage/homePage.dart';
 import 'package:photoblogapp/landingPage/landingServices.dart';
+import 'package:photoblogapp/landingPage/landingUtils.dart';
 import 'package:photoblogapp/services/authentication.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:provider/provider.dart';
@@ -133,8 +134,8 @@ class LandingHelpers with ChangeNotifier {
                                 fontWeight: FontWeight.w600),
                           ),
                           onPressed: () {
-                            Provider.of<LandingServices>(context, listen: false)
-                                .signInSheet(context);
+                            Provider.of<landingUtils>(context, listen: false)
+                                .selectAvatarOptionsSheet(context);
                           }),
                     ],
                   ),
